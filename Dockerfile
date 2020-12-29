@@ -5,22 +5,20 @@ RUN apk add --no-cache --virtual gcompris-build-depepndencies \
     git \
     build-base \
     cmake \
-    qt5-qtbase-dev
-
-RUN git clone --recursive --branch ${REVISION} https://github.com/gcompris/GCompris-qt.git /gcompris
+    qt5-qtbase-dev \
+    qt5-qtdeclarative-dev \
+    qt5-qtmultimedia-dev \
+    qt5-qtsvg-dev \
+    qt5-qtxmlpatterns-dev \
+    qt5-qttools-dev \
+    qt5-qtsensors-dev &&\
+    git clone --recursive --branch ${REVISION} https://github.com/gcompris/GCompris-qt.git /gcompris
 
 WORKDIR /gcompris/build
 
-RUN apk add qt5-qtdeclarative-dev
-RUN apk add qt5-qtmultimedia-dev
-RUN apk add qt5-qtsvg-dev
-RUN apk add qt5-qtxmlpatterns-dev
-RUN apk add qt5-qttools-dev
-RUN apk add qt5-qtsensors-dev
-
 RUN cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/gcompris \
-    ..
-RUN make
+    .. &&\
+    make
 RUN make install
 
