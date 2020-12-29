@@ -11,9 +11,12 @@ RUN apk add --no-cache --virtual gcompris-runtime-depepndencies \
     qt5-qtsvg \
     qt5-qtxmlpatterns \
     qt5-qttools \
-    qt5-qtsensors
+    qt5-qtsensors \
+    qt5-qtquickcontrols \
+    qt5-qtgraphicaleffects \
+    mesa-dri-swrast
 
 USER ${USER}
 ENV PATH=${PATH}:/opt/gcompris/bin \
-    COMMAND=gcompris
+    COMMAND=gcompris-qt
 
